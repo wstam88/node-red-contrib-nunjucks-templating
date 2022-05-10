@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    RED.nodes.registerType('nunjucks_render',{
+        category: 'function',
+        color: '#d0e2d0',
+        icon: "nunjucks.png",
+        paletteLabel: "Render",
+        defaults: {
+            template: { value:"" }
+        },
+        inputs:1,
+        outputs:1,
+        label: function() {
+            return this.name||"Render";
+        },
+        oneditprepare: function() {
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-template',
+                mode: 'ace/mode/twig',
+                value: this.template,
+             });
+             
+
+        },
+        oneditsave: function() {
+            $("#node-input-template").val(this.editor.getValue());
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function() {
+            this.editor.destroy();
+            delete this.editor;
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="nunjucks_render">
+    <div style="height: 100%" class="node-text-editor" id="node-input-template"></div>
+</script>
+
+<script type="text/html" data-help-name="nunjucks_render">
+    <p>A powerful templating engine with inheritance, asynchronous control, and more (jinja2 inspired) (by mozilla)</p>
+</script>

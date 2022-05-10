@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    RED.nodes.registerType('nunjucks',{
+        category: 'function',
+        color: '#d0e2d0',
+        icon: "nunjucks.png",
+        paletteLabel: "Template",
+        defaults: {
+            name: { value:"", required: true},
+            template: { value:"" }
+        },
+        inputs:0,
+        outputs:0,
+        label: function() {
+            return this.name||"Template";
+        },
+        oneditprepare: function() {
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-template',
+                mode: 'ace/mode/twig',
+                value: this.template,
+             });
+             
+
+        },
+        oneditsave: function() {
+            $("#node-input-template").val(this.editor.getValue());
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function() {
+            this.editor.destroy();
+            delete this.editor;
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="nunjucks">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div style="height: 100%;" class="node-text-editor" id="node-input-template"></div>
+</script>
+
+<script type="text/html" data-help-name="nunjucks">
+    <p>A powerful templating engine with inheritance, asynchronous control, and more (jinja2 inspired) (by mozilla)</p>
+</script>

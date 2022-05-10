@@ -1,0 +1,21 @@
+{
+    "name": "node-red-contrib-nunjucks-templating",
+    "version": "1.0.0",
+    "description": "Nunjucks is a full featured templating engine for javascript. It is heavily inspired by jinja2.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["nunjucks", "templating", "node-red"],
+    "author": "Wesley Stam <wstam88@gmail.com",
+    "license": "ISC",
+    "node-red": {
+        "nodes": {
+            "nunjucks": "nodes/nunjucks.js",
+            "nunjucks_render": "nodes/nunjucks_render.js"
+        }
+    },
+    "dependencies": {
+        "nunjucks": "^3.2.3"
+    }
+}
