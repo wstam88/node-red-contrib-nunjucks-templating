@@ -88,7 +88,7 @@ module.exports = function (RED) {
         const node = this;
         const globalContext = this.context().global;
         const templates = {};
-        const settings = RED.settings.nunjucks;
+        const settings = RED.settings.nunjucks || {};
 
         filters = {};
         extensions = {};
