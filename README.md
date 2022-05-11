@@ -17,8 +17,8 @@ This means you don't have to worry about where the template is defined while inc
 ## Template inheritance
 `extends` is used to specify template inheritance. The specified template is used as a base template.
 See [Template Inheritance](https://mozilla.github.io/nunjucks/templating.html#extends).
-![](./resources/base_template.png)
-![Macro usage](./resources/macro_usage.png)
+![](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/base_template.png)
+![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_usage.png)
 
 ## Custom filters
 You can register filters using the global function ```nj.addFilter```
@@ -54,20 +54,20 @@ Access it anywhere in any template or macro: `{{ myVar }}`
 Simple place your macros in a Nunjucks template node. The macros can be imported simply by there name. You can have one or more macros in one or more Nunjuck template nodes.
 
 ### Defining macros
-![Macro definitions](./resources/macro_definition.png)
+![Macro definitions](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_definition.png)
  
 ### Using macros
-![Macro usage](./resources/macro_usage.png)
+![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_usage.png)
 
 
 ## Other global functions
-global.get("nj.addFilter");
-global.get("nj.getFilter");
-global.get("nj.addExtension");
-global.get("nj.getExtension");
-global.get("nj.hasExtension");
-global.get("nj.removeExtension");
-global.get("nj.getTemplate");
-global.get("nj.addGlobal");
-global.get("nj.getGlobal");
-global.get("nj.renderString");
+* global.get("nj.addFilter");
+* global.get("nj.getFilter");
+* global.get("nj.addExtension");
+* global.get("nj.getExtension");
+* global.get("nj.hasExtension");
+* global.get("nj.removeExtension");
+* global.get("nj.getTemplate");
+* global.get("nj.addGlobal");
+* global.get("nj.getGlobal");
+* global.get("nj.renderString");
