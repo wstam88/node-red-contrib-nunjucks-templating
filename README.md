@@ -8,9 +8,17 @@ You can define any valid **[Nunjucks options](https://mozilla.github.io/nunjucks
 
 
 ## Loading templates
-Templates can be defined with the **Nunjucks template** nodes or be loaded from the file system using preconfigured folders for lookup. Loading is done automaticly in the following order: 
+Templates can be defined with the **Nunjucks template** nodes or be loaded from the file system using preconfigured folders for lookup. Loading is done automatically in the following order: 
 1. Defined templates as nodes within the project that matches the name
 2. Looking for files in one of the configures folders
+
+```
+...
+nunjucks: {
+    folders: ["./my-templates", "./templates"],
+}
+...
+```
 
 This means you don't have to worry about where the template is defined while including it in your templates.
 
