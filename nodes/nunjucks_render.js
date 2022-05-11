@@ -113,7 +113,7 @@ module.exports = function (RED) {
             });
 
             const env = new nunjucks.Environment(
-                new NodeTemplateLoader(templates, settings?.folders),
+                new NodeTemplateLoader(templates, settings.folders || []),
                 settings.options || {}
             );
             
@@ -123,7 +123,7 @@ module.exports = function (RED) {
 
             try {
                 msg.payload = env.renderString(config.template, {
-                    ...settings?.globals || {},
+                    ...settings.globals || {},
                     ...msg.payload
                 });
             } catch(err) {
