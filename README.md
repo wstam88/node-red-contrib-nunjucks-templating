@@ -60,7 +60,7 @@ Access it anywhere in any template or macro: `{{ myVar }}`
 ## Macros
 "`macro` allows you to define reusable chunks of content. It is similar to a function in a programming language."
 
-Simple place your macros in a Nunjucks template node. The macros can be imported simply by there name. You can have one or more macros in one or more Nunjuck template nodes.
+Simple place your macros in a Nunjucks template node or in a file. The macros can be imported simply by there node name or filename. You can have one or more macros in one or more Nunjuck template nodes or files.
 
 ### Defining macros
 ![Macro definitions](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_definition.png)
