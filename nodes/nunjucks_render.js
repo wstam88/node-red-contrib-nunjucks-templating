@@ -127,7 +127,8 @@ module.exports = function (RED) {
                     ...msg.payload
                 });
             } catch(err) {
-                msg.payload = err.message;
+                console.error(err)
+                msg.payload = `Error rendering ${config.template}: ${err.message}`;
             }
 
             node.send(msg);
