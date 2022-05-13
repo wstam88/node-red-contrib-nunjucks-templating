@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-nunjucks-templating",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Nunjucks is a full featured templating engine for javascript. It is heavily inspired by jinja2.",
     "main": "main.js",
     "scripts": {

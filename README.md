@@ -2,6 +2,8 @@
 A rich and powerful templating language for JavaScript right in Node-RED. 
 For all of the Nunjucks template features checkout the **[official Nunjucks documentation](https://mozilla.github.io/nunjucks/templating.html)**
 
+![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/images/nunjucks.webp)
+
 ## Options
 You can define any valid **[Nunjucks options](https://mozilla.github.io/nunjucks/api.html#configure)** in the Node-RED settings.js file.
 `nunjucks.options`
@@ -12,12 +14,10 @@ Templates can be defined with the **Nunjucks template** nodes or be loaded from 
 1. Defined templates as nodes within the project that matches the name
 2. Looking for files in one of the configures folders
 
-```
-...
+```js
 nunjucks: {
     folders: ["./my-templates", "./templates"],
 }
-...
 ```
 
 This means you don't have to worry about where the template is defined while including it in your templates.
@@ -25,23 +25,47 @@ This means you don't have to worry about where the template is defined while inc
 ## Template inheritance
 `extends` is used to specify template inheritance. The specified template is used as a base template.
 See [Template Inheritance](https://mozilla.github.io/nunjucks/templating.html#extends).
-![](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/base_template.png)
-![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_usage.png)
+![](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/images/base_template.png)
+![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/images/macro_usage.png)
 
 ## Custom filters
 You can register filters using the global function `nj.addFilter`
 
-```global.get('nj.addFilter')('foo', val => return `Foo: ${val}`)```
+```js
+// Value will be whatever is piped to the filter
+function myFilter(value) {
+    return `Foo: ${value}!!`
+}
+
+global.get('nj.addFilter')('myFilter', myFilter)
+```
 
 Now you can use it in all of your templates like: `{{ 'bar' | foo }}`
 
-Which will output: `Foo: bar`
+**Output:** `Foo: bar!!`
+
+## Passing functions 
+Functions can be passed like any other variables as context.
+```js
+// context
+msg.payload = {
+    foo: 'bar',
+    reverse: value => value.split('').reverse().join('')
+}
+```
+
+```twig
+{# template #}
+{{ reverse(foo) }}
+```
+
+**Output:** `rab`
+
 
 ## Global context
 You can add global variables in multiple ways:
 1. Add a section to settings.js like this:
-```
-...
+```js
 nunjucks: {
     global: {
         foo: 'bar',
@@ -50,12 +74,40 @@ nunjucks: {
         }
     }
 }
-...
 ```
 Now you can access it anywhere like so: `{{ app.name }} and {{ foo }}`.
 
 2. Add it within a function node: `global.get('nj.addGlobal')('myVar', 'Some value')`
 Access it anywhere in any template or macro: `{{ myVar }}` 
+
+## Snippets
+Nunjucks snippets are provided for the Monaco editor only. Press ctrl+spacebar to list the available snippets.
+
+* asyncAll
+* asyncEach
+* block
+* call
+* elif
+* else
+* end
+* extends
+* filter
+* for
+* from
+* if
+* ife
+* ifel
+* import
+* include
+* macro
+* njk
+* or
+* pipe
+* raw
+* set
+* super
+* var
+* v{}
 
 ## Macros
 "`macro` allows you to define reusable chunks of content. It is similar to a function in a programming language."
@@ -63,10 +115,10 @@ Access it anywhere in any template or macro: `{{ myVar }}`
 Simple place your macros in a Nunjucks template node or in a file. The macros can be imported simply by there node name or filename. You can have one or more macros in one or more Nunjuck template nodes or files.
 
 ### Defining macros
-![Macro definitions](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_definition.png)
+![Macro definitions](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/images/macro_definition.png)
  
 ### Using macros
-![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/macro_usage.png)
+![Macro usage](https://raw.githubusercontent.com/wstam88/node-red-contrib-nunjucks-templating/main/resources/images/macro_usage.png)
 
 
 ## Other global functions
